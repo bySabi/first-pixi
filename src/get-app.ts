@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { GAME_WIDTH, GAME_HEIGHT, GAME_BACKGROUND_COLOR } from "./constants";
 
-const S = { } as { app: PIXI.Application };
+const S = {} as { app: PIXI.Application };
 
 function setSize(): void {
     S.app.renderer.resize(window.innerWidth, window.innerHeight);

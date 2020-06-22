@@ -34,7 +34,6 @@ function getBird(): PIXI.AnimatedSprite {
     return bird;
 }
 
-
 function startLoadingAssets(): void {
     loader.add("rabbit", rabbitImage);
     loader.add("spriteExample", "./assets/spriteSheets/spritesData.json"); // example of loading spriteSheet
@@ -57,7 +56,7 @@ function onAssetsLoaded(): void {
     });
 }
 
-window.onload = () => {
+window.onload = function (): void {
     app = getApp();
     stage = app.stage;
     startLoadingAssets();
