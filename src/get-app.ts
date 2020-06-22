@@ -3,17 +3,17 @@ import { GAME_WIDTH, GAME_HEIGHT, GAME_BACKGROUND_COLOR } from "./constants";
 
 const S = { } as { app: PIXI.Application };
 
-function onResize() {
-    S.app && setSize();
-}
-
-function setSize() {
+function setSize(): void {
     S.app.renderer.resize(window.innerWidth, window.innerHeight);
     S.app.stage.scale.x = window.innerWidth / GAME_WIDTH;
     S.app.stage.scale.y = window.innerHeight / GAME_HEIGHT;
 }
 
-export function getApp() {
+function onResize(): void {
+    S.app && setSize();
+}
+
+export function getApp(): PIXI.Application {
     if (!S.app) {
         S.app = new PIXI.Application({
             width: GAME_WIDTH,
