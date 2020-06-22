@@ -7,28 +7,6 @@ let app: PIXI.Application;
 let stage: PIXI.Container;
 const loader = PIXI.Loader.shared;
 
-function startLoadingAssets(): void {
-    loader.add("rabbit", rabbitImage);
-    loader.add("spriteExample", "./assets/spriteSheets/spritesData.json"); // example of loading spriteSheet
-    loader.load();
-}
-
-function onAssetsLoaded(): void {
-    const bunny = getBunny();
-    bunny.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2);
-
-    const birdFromSprite = getBird();
-    birdFromSprite.anchor.set(0.5, 0.5);
-    birdFromSprite.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2 + bunny.height);
-
-    stage.addChild(bunny);
-    stage.addChild(birdFromSprite);
-
-    app.ticker.add(() => {
-        bunny.rotation += 0.05;
-    });
-}
-
 function getBunny(): PIXI.Sprite {
     const bunnyRotationPoint = {
         x: 0.5,
@@ -54,6 +32,29 @@ function getBird(): PIXI.AnimatedSprite {
     bird.scale.set(3);
 
     return bird;
+}
+
+
+function startLoadingAssets(): void {
+    loader.add("rabbit", rabbitImage);
+    loader.add("spriteExample", "./assets/spriteSheets/spritesData.json"); // example of loading spriteSheet
+    loader.load();
+}
+
+function onAssetsLoaded(): void {
+    const bunny = getBunny();
+    bunny.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2);
+
+    const birdFromSprite = getBird();
+    birdFromSprite.anchor.set(0.5, 0.5);
+    birdFromSprite.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2 + bunny.height);
+
+    stage.addChild(bunny);
+    stage.addChild(birdFromSprite);
+
+    app.ticker.add(() => {
+        bunny.rotation += 0.05;
+    });
 }
 
 window.onload = () => {
