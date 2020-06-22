@@ -7,20 +7,13 @@ let app: PIXI.Application;
 let stage: PIXI.Container;
 const loader = PIXI.Loader.shared;
 
-window.onload = () => {
-    app = getApp();
-    stage = app.stage;
-    startLoadingAssets();
-    loader.onComplete.once(() => onAssetsLoaded());
-};
-
-function startLoadingAssets() {
+function startLoadingAssets(): void {
     loader.add("rabbit", rabbitImage);
     loader.add("spriteExample", "./assets/spriteSheets/spritesData.json"); // example of loading spriteSheet
     loader.load();
 }
 
-function onAssetsLoaded() {
+function onAssetsLoaded(): void {
     const bunny = getBunny();
     bunny.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2);
 
@@ -62,3 +55,10 @@ function getBird(): PIXI.AnimatedSprite {
 
     return bird;
 }
+
+window.onload = () => {
+    app = getApp();
+    stage = app.stage;
+    startLoadingAssets();
+    loader.onComplete.once(() => onAssetsLoaded());
+};
