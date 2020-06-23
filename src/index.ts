@@ -4,7 +4,6 @@ import { GAME_WIDTH, GAME_HEIGHT } from "./constants";
 import rabbitImage from "./assets/rabbit.png";
 
 let app: PIXI.Application;
-let stage: PIXI.Container;
 const loader = PIXI.Loader.shared;
 
 function getBunny(): PIXI.Sprite {
@@ -41,6 +40,8 @@ function startLoadingAssets(): void {
 }
 
 function onAssetsLoaded(): void {
+    const stage = app.stage;
+
     const bunny = getBunny();
     bunny.position.set(GAME_WIDTH / 2, GAME_HEIGHT / 2);
 
@@ -58,7 +59,8 @@ function onAssetsLoaded(): void {
 
 window.onload = function (): void {
     app = getApp();
-    stage = app.stage;
     startLoadingAssets();
-    loader.onComplete.once(() => onAssetsLoaded());
+    loader.onComplete.once(() => {
+        onAssetsLoaded();
+    });
 };
